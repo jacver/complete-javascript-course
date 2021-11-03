@@ -1,3 +1,5 @@
+# Note: This is the course material for my Udemy Javascript course. The structured so that each topic has FINAL and STARTER code. The STARTER code consists of my notes and code from throughout the course while the FINAL code was compiled by the course author.
+
 # Course Material and FAQ for my Complete JavaScript Course
 
 This repo contains starter files and final code for all sections and projects contained in the course.
