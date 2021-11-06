@@ -1,8 +1,37 @@
 'use strict';
 
-// Data needed for a later exercise
-// const flights =
-//   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+//Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// Working with Strings
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+// methods on strings include .length, .indexOf, .lastIndexOf which can be used as arguments for the slice method
+
+console.log(airline.slice(4));
+// the parameter dictates the position the extraction starts. So above it will extract everything after position 4 which produces "Air Portugal" as a substring
+console.log(airline.slice(0, airline.indexOf(' ')));
+// slices from first position to the first occurance of a space
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// slices from last occurance of space to end of string. the +1 makes sure it doesnt actually include the space
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+// parameters can be negative which runs it from the end
+
+const checkMiddleSeat = function (seat) {
+  //  B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat :(');
+  else console.log('You got lucky :)');
+};
+
+checkMiddleSeat('11B');
+// This function is case sensitive!
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
 
 // Data needed for first part of the section
 const restaurant = {
@@ -351,47 +380,47 @@ for (const [team, odd] of Object.entries(game.odds)) {
 // here you use a ternary operator in teamStr so it changes output based on team name. Remember object.entries for objects and game.scored.entries for arrays
 */
 
-// --- challenge 3
-const gameEvents = new Map([
-  [17, '⚽ GOAL'],
-  [36, '� Substitution'],
-  [47, '⚽ GOAL'],
-  [61, '� Substitution'],
-  [64, '� Yellow card'],
-  [69, '� Red card'],
-  [70, '� Substitution'],
-  [72, '� Substitution'],
-  [76, '⚽ GOAL'],
-  [80, '⚽ GOAL'],
-  [92, '� Yellow card'],
-]);
-// 1. Create an array 'events' of the different game events (no duplicates)
+// // --- challenge 3
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '� Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '� Substitution'],
+//   [64, '� Yellow card'],
+//   [69, '� Red card'],
+//   [70, '� Substitution'],
+//   [72, '� Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '� Yellow card'],
+// ]);
+// // 1. Create an array 'events' of the different game events (no duplicates)
 
-const arr = [];
-// create an empty array to push values into
-for (const [key, value] of gameEvents) {
-  arr.push({ key, value });
-}
-// values are pushed by key/value pair
-console.log(arr);
+// const arr = [];
+// // create an empty array to push values into
+// for (const [key, value] of gameEvents) {
+//   arr.push({ key, value });
+// }
+// // values are pushed by key/value pair
+// console.log(arr);
 
-// 2. After the game has finished, remove the yellow card from 64'
-gameEvents.delete(64);
-// delete using key (first value which in this case is minute)
+// // 2. After the game has finished, remove the yellow card from 64'
+// gameEvents.delete(64);
+// // delete using key (first value which in this case is minute)
 
-// 3. Compute and log 'An event has happened, on average, every 9 minutess
-const avgEvent = function () {
-  const average = 90 / gameEvents.size;
-  console.log(`An event has happened, on average, every ${average} minutes.`);
-};
-avgEvent();
-// Compute the average using a function with .size - if .size changes you won't need to alter function.
+// // 3. Compute and log 'An event has happened, on average, every 9 minutess
+// const avgEvent = function () {
+//   const average = 90 / gameEvents.size;
+//   console.log(`An event has happened, on average, every ${average} minutes.`);
+// };
+// avgEvent();
+// // Compute the average using a function with .size - if .size changes you won't need to alter function.
 
-// 4. Loop over gameEvents and log each element to console, marking whether it was first or second half like this: [FIRST HALF] 15': -EVENT-
+// // 4. Loop over gameEvents and log each element to console, marking whether it was first or second half like this: [FIRST HALF] 15': -EVENT-
 
-for (let [key, value] of gameEvents) {
-  key <= 45
-    ? console.log(`[FIRST HALF] ${key}': ${value}`)
-    : console.log(`[SECOND HALF] ${key}': ${value}`);
-}
-// Here you do a for loop OVER game events by defining key and value. Then use a ternary operator to do a simple if-else and return the half.
+// for (let [key, value] of gameEvents) {
+//   key <= 45
+//     ? console.log(`[FIRST HALF] ${key}': ${value}`)
+//     : console.log(`[SECOND HALF] ${key}': ${value}`);
+// }
+// // Here you do a for loop OVER game events by defining key and value. Then use a ternary operator to do a simple if-else and return the half.
