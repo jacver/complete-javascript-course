@@ -7,18 +7,18 @@ const flights =
 // Working with Strings
 
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// const plane = 'A320';
 
 // methods on strings include .length, .indexOf, .lastIndexOf which can be used as arguments for the slice method
 
-console.log(airline.slice(4));
+// console.log(airline.slice(4));
 // the parameter dictates the position the extraction starts. So above it will extract everything after position 4 which produces "Air Portugal" as a substring
-console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(0, airline.indexOf(' ')));
 // slices from first position to the first occurance of a space
-console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
 // slices from last occurance of space to end of string. the +1 makes sure it doesnt actually include the space
-console.log(airline.slice(-2));
-console.log(airline.slice(1, -1));
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
 // parameters can be negative which runs it from the end
 
 const checkMiddleSeat = function (seat) {
@@ -28,10 +28,64 @@ const checkMiddleSeat = function (seat) {
   else console.log('You got lucky :)');
 };
 
-checkMiddleSeat('11B');
-// This function is case sensitive!
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
+// checkMiddleSeat('11B');
+// // This function is case sensitive!
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// working with strings pt 2
+
+// other methods include .toLowerCase and .toUpperCase
+// fixing capitalization
+const passenger = 'JaCoB';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+// here you need slice so you dont get Jjacob
+
+// comparing emails
+const email = 'hello@jacob.io';
+const loginEmail = '  Hello@Jacob.io \n';
+// checking emails first requires changing to lower case
+// const lowerEmail = loginEmail.toLowerCase();
+// then remove white space at beginning and end
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+// consolidation
+const normalizedEmail = loginEmail.toLowerCase().trim();
+// chaining string methods for concise, clear code
+// console.log(email === normalizedEmail);
+// this is the check - are they the same? Boolean result
+
+// .replace and .replaceAll
+const priceUS = '$288.97';
+const priceGB = priceUS.replace('$', '£').replace('.', ',');
+
+// Boolean .startsWith .endsWith .includes
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of new Airbus Family');
+}
+
+// practice excercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  // always put user input to lower case
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are not allowed on the plane');
+  } else {
+    console.log('welcome aboard!');
+  }
+};
+checkBaggage('I have a laptop, Food, and a Knife');
+// user input includes capitalizations so we had to .toLowercase
+checkBaggage('I have sock and a camera');
+checkBaggage('Snacks and a gun');
 
 // Data needed for first part of the section
 const restaurant = {
