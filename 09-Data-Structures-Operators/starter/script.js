@@ -62,30 +62,52 @@ const normalizedEmail = loginEmail.toLowerCase().trim();
 const priceUS = '$288.97';
 const priceGB = priceUS.replace('$', '£').replace('.', ',');
 
-// Boolean .startsWith .endsWith .includes
-const plane = 'Airbus A320neo';
-console.log(plane.includes('A320'));
-console.log(plane.includes('Boeing'));
-console.log(plane.startsWith('Air'));
+// // Boolean .startsWith .endsWith .includes
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Air'));
 
-if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
-  console.log('Part of new Airbus Family');
-}
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of new Airbus Family');
+// }
 
 // practice excercise
-const checkBaggage = function (items) {
-  const baggage = items.toLowerCase();
-  // always put user input to lower case
-  if (baggage.includes('knife') || baggage.includes('gun')) {
-    console.log('You are not allowed on the plane');
-  } else {
-    console.log('welcome aboard!');
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   // always put user input to lower case
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are not allowed on the plane');
+//   } else {
+//     console.log('welcome aboard!');
+//   }
+// };
+// checkBaggage('I have a laptop, Food, and a Knife');
+// // user input includes capitalizations so we had to .toLowercase
+// checkBaggage('I have sock and a camera');
+// checkBaggage('Snacks and a gun');
+
+// working with strings pt 3
+// .split breaks up a string based on a divider and returns them as individual elements into an array ready for destructuring
+const [firstName, lastName] = 'Jacob Vernau'.split(' ');
+// .join works in the opposite direction
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizedName = function (name) {
+  const names = name.split(' ');
+  // returns an array we can loop over with for-of
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    // alt method: namesUpper.push(n.replace(n[0], n[0],toUpperCase))
   }
+  //push into namesUpper array
+  console.log(namesUpper.join(' '));
 };
-checkBaggage('I have a laptop, Food, and a Knife');
-// user input includes capitalizations so we had to .toLowercase
-checkBaggage('I have sock and a camera');
-checkBaggage('Snacks and a gun');
+
+capitalizedName('jessica ann smith davis');
+capitalizedName('jacob vernau');
 
 // Data needed for first part of the section
 const restaurant = {
