@@ -3,6 +3,18 @@
 //Data needed for a later exercise
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+// scenario - this string was retrieved in web API, must be displayed in a nicer way.
+
+for (const flight of flights.split('+')) {
+  const [direction, first, second, time] = flight.split(';');
+  const output = `${direction.replaceAll('_', ' ').trim()} from ${first
+    .slice(0, 3)
+    .toUpperCase()} to ${second.slice(0, 3).toUpperCase()} (${time.replaceAll(
+    ':',
+    'h'
+  )})`.padStart(45);
+  console.log(output);
+}
 
 // Working with Strings
 
@@ -92,7 +104,7 @@ const priceGB = priceUS.replace('$', '£').replace('.', ',');
 const [firstName, lastName] = 'Jacob Vernau'.split(' ');
 // .join works in the opposite direction
 const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(newName);
+// console.log(newName);
 
 const capitalizedName = function (name) {
   const names = name.split(' ');
@@ -103,11 +115,29 @@ const capitalizedName = function (name) {
     // alt method: namesUpper.push(n.replace(n[0], n[0],toUpperCase))
   }
   //push into namesUpper array
-  console.log(namesUpper.join(' '));
+  // console.log(namesUpper.join(' '));
 };
 
-capitalizedName('jessica ann smith davis');
-capitalizedName('jacob vernau');
+// capitalizedName('jessica ann smith davis');
+// capitalizedName('jacob vernau');
+
+// padding
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  // string converts rest to string with +
+  const last = str.slice(-4);
+  // starting with last 4
+  return last.padStart(str.length, '*');
+  // converts the rest to *
+};
+
+// console.log(maskCreditCard(209310238238));
+// console.log(maskCreditCard('124020390293213'));
+
+// repeat
+const message2 = 'bad weather... all departures delayed... ';
+// console.log(message2.repeat(5));
 
 // Data needed for first part of the section
 const restaurant = {
@@ -500,3 +530,24 @@ for (const [team, odd] of Object.entries(game.odds)) {
 //     : console.log(`[SECOND HALF] ${key}': ${value}`);
 // }
 // // Here you do a for loop OVER game events by defining key and value. Then use a ternary operator to do a simple if-else and return the half.
+
+// CODING CHALLENGE 4
+// DOM insertion
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+const text = document.querySelector('textarea').value;
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  // \n is new line
+
+  for (const row of rows) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    // console.log(`${output.padEnd(20)}`);
+  }
+});
