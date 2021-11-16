@@ -1,6 +1,6 @@
 'use strict';
 
-// lesson 127 - default parameters
+// lesson 128 - default parameters
 
 const bookings = [];
 
@@ -27,7 +27,7 @@ const createBooking = function (
 // createBooking('LH123', undefined, 1000);
 // setting an argument as undefined lets you skip and leave default
 
-// lesson 128 - Passing Arguments: value vs. reference
+// lesson 129 - Passing Arguments: value vs. reference
 
 const flight = 'LH234';
 const jacob = {
@@ -59,7 +59,7 @@ newPassport(jacob);
 // passport is changed before it's called here so you have two functions manipulating the same object
 // Javascript only has pass-by-value NOT pass-by-reference as some other languages do -- this is a tricky part of JS
 
-// lesson 129 - first class and higher order functions
+// lesson 130 - first class and higher order functions
 
 // Javascript treats functions as FIRST CLASS CITIZENS and this means that functions are simply just values or another "type" of object so they can be stored in variables or objects. They can ALSO be passed as arguments to other functions. You can also return functions from other functions.
 
@@ -68,3 +68,34 @@ newPassport(jacob);
 // example - .addEventListener('click', greet). If greet is a previously defined, addEventListener is the higher order function because it RECEIVES another function (greet) as an input. The input function is called a call-back function because it's called back by the higher order function.
 
 // example - a function returned inside of a different function call
+
+// lesson 131 - functions accepting callback functions - very important
+
+const oneWord = function (str) {
+  return str.replaceAll(' ', '').toLowerCase();
+  //replaceAll for old code reads as / /g
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// higher order function bc it accepts function (fn)
+const transformer = function (str, fn) {
+  console.log(`Original String: ${str}`);
+  console.log(`Transformed String: ${fn(str)}`);
+  console.log(`Transformed By: ${fn.name}`);
+};
+
+// transformer('JavaScript is the best', upperFirstWord);
+// transformer('JavaScript is the best', oneWord);
+
+const high5 = function () {
+  // console.log('High Five!');
+};
+document.body.addEventListener('click', high5);
+// higher function = addEventListener, callback function = high5
+
+['jonas', 'martha', 'adam'].forEach(high5);
+// passing a callback FOR EACH of the array elements
