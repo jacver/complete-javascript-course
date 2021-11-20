@@ -231,7 +231,7 @@ sense (e.g. answer 52 wouldn't make sense, right?)
 method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1".
 4. Run the 'displayResults' method at the end of each 
 'registerNewAnswer' method call.
-*/
+
 
 const poll = {
   question: 'What is your favourite programming language?',
@@ -271,3 +271,24 @@ document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 // without binding it to poll, the this keyword here will always point to the higher function (the query selector in this case).
+*/
+
+// video 136 - immediately invoked function expressions (IIFE)
+
+// a function that runs once and never runs again - you dont have to save it anywhere. You don't assign it to a variable so you must trick JS into thinking it's an expression by wrapping it in (). Then to call it you add another () at the end.
+
+(function () {
+  console.log('this will never run again');
+})();
+
+(() => console.log('This will also only run once'))();
+
+// hiding variables can be very important for data security.
+
+{
+  const isPrivate = 23;
+  let isPrivate2 = 22;
+  var notPrivate = 21;
+}
+// console.log(isPrivate, isPrivate2, notPrivate);
+// creating a new scope is easily done with { } that prevents the global scope from accessing it. This is an easier, more modern way than IIFEs and why to avoid declaring with VAR as VAR ignores the scope { }
