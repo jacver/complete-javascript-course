@@ -146,35 +146,35 @@ const eurowings = {
 };
 
 // book(123, 'Jacob Vernau') will not work, needs to be assigned
-book.call(lufthansa, 239, 'April Beckwith');
-book.call(eurowings, 23, 'Jacob Vernau');
+// book.call(lufthansa, 239, 'April Beckwith');
+// book.call(eurowings, 23, 'Jacob Vernau');
 // first argument is the this. keyword
 
 // apply method
-const flightData = [583, 'April Beckwith'];
-book.apply(lufthansa, flightData);
+// const flightData = [583, 'April Beckwith'];
+// book.apply(lufthansa, flightData);
 // apply method is not as useful in modern JS in favor of spread operator to remove from array and insert into function
 
 // Video 134 - the bind method
 
-const bookEW = book.bind(eurowings);
+// const bookEW = book.bind(eurowings);
 // this does not call the book function. It returns new function where this keyword is always set to eurowings
-const bookLH = book.bind(lufthansa);
+// const bookLH = book.bind(lufthansa);
 // we can create one for each airline to simplify process for booking information
-bookEW(1234, 'Jacob Vernau');
+// bookEW(1234, 'Jacob Vernau');
 
-const bookEW23 = book.bind(eurowings, 23);
+// const bookEW23 = book.bind(eurowings, 23);
 // setting number in stone so now we just need to call with name
 // this is called partial application - parts of original function are already applied
-bookEW23('Jacob Vernau');
+// bookEW23('Jacob Vernau');
 
 // with event listeners
 lufthansa.planes = 300;
 lufthansa.buyPlane = function () {
-  console.log(this);
+  // console.log(this);
 
   this.planes++;
-  console.log(this.planes);
+  // console.log(this.planes);
 };
 
 document
@@ -187,12 +187,12 @@ document
 
 const addTax = (rate, value) => value + value * rate;
 // when using partial application the thing you want to preset has to be first argument!!
-console.log(addTax(0.1, 200));
+// console.log(addTax(0.1, 200));
 // general function to add tax
 
 const addVAT = addTax.bind(null, 0.23);
 // there is no this keyword so you must set it as a null value. This allows it to read the rate you want because the first argument is always THIS keyword
-console.log(addVAT(1000));
+// console.log(addVAT(1000));
 
 // summary - BIND creates a new function. CALL calls the same function.
 
@@ -231,20 +231,43 @@ sense (e.g. answer 52 wouldn't make sense, right?)
 method takes a string as an input (called 'type'), which can be either 'string' or 'array'. If type is 'array', simply display the results array as it is, using console.log(). This should be the default option. If type is 'string', display a string like "Poll results are 13, 2, 4, 1".
 4. Run the 'displayResults' method at the end of each 
 'registerNewAnswer' method call.
-5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll object! So what should the this keyword look like in this situation?
-
-Test data for bonus:
-§ Data 1: [5, 2, 3]
-§ Data 2: [1, 5, 3, 9, 6, 1]
-Hints: Use many of the tools you learned about in this and the last section */
+*/
 
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
   answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    // get the answer
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Write Option Number)`
+      )
+    );
+    console.log(answer);
+
+    // register answer
+    typeof answer === 'number' &&
+      answer < this.answers < this.answers.length &&
+      this.answers[answer]++;
+    console.log(this.answers);
+    // use case for short-circuiting on &&. If first is true it will keep going to 2nd. then 3rd if 2nd is true.
+
+    // display resuls
+    this.displayResults();
+  },
+
+  displayResults(type) {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
+  },
 };
 
-
-
-poll.registerNewAnswer = document.querySelector('.poll').addEventListener('click', ) {}
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+// without binding it to poll, the this keyword here will always point to the higher function (the query selector in this case).
