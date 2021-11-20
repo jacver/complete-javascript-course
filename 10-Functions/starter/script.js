@@ -292,3 +292,24 @@ document
 }
 // console.log(isPrivate, isPrivate2, notPrivate);
 // creating a new scope is easily done with { } that prevents the global scope from accessing it. This is an easier, more modern way than IIFEs and why to avoid declaring with VAR as VAR ignores the scope { }
+
+// video 137 - Closures *pretty hard concept*
+
+// closures are not manually created - they are made automatically in certain situations so you need to know when they'll be made.
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+//since secureBooking is off of the call stack how is booker able to access it and alter passengerCount? It's through a closure which forces a function remember all variables that existed when function was created.
+
+booker();
+booker();
+booker();
