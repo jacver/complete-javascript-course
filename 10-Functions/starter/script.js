@@ -308,8 +308,80 @@ const secureBooking = function () {
 
 const booker = secureBooking();
 
-//since secureBooking is off of the call stack how is booker able to access it and alter passengerCount? It's through a closure which forces a function remember all variables that existed when function was created.
+//since secureBooking is off of the call stack how is booker able to access it and alter passengerCount? It's through a closure which forces a function to remember all variables that existed when function was created.
 
-booker();
-booker();
-booker();
+// booker();
+// booker();
+// booker();
+
+// A closure gives a function access to all variables of it's parent function even after the parent function has returned. The function keeps a reference to it's outer (parent) scope which preserves the scope.
+
+// A closure makes it so a function doesn't lose connection to variables that existed at it's birth place (i.e. a person doesnt lose connection to home tow)
+
+// a closure is a backpack that carries around the variables that were present when the function was created. function = person, closure = backpack, variables = inside backpack
+
+// video 138 -- more closure examples
+
+// ex 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+// Here F is assigned in the G function so it closes over and is accessible after G function is no longer there
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+
+// Reassigning F function
+h();
+f();
+
+// ex 2
+const boardPassengers = function (n, wait) {
+  // const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+  // this timer will run the callback function after 3 seconds. The time value is in milliseconds so by calling the function with 3 * 1000 you will get 3 seconds.
+
+  console.log(`Will start boarding in ${wait} seconds`);
+  // this runs immediately as it's not impacted by timer above
+};
+
+const perGroup = 1000;
+// if you comment out the perGroup within the function it will use this one. Otherwise, the one inside the function takes priority.
+
+boardPassengers(180, 3);
+
+// coding challenge 2
+
+/* 1
+1) Take the IIFE below and at the end of the function attach an event listener that changes the color of the selected h1 element ('header') to blue each time the body element is clicked. Do not select the H1 element again.
+
+2) Explain to yourself why this worked. Take all the time you need. Think about when exactly the callback function is executed and what that means for the variables involved in this example.
+*/
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+
+// even though the IIFE is gone, the event listener is still at the birthplace of the rest. Therefore the function remembers the variables present at the event location. So Header is in the backpack of this function and will change when the body is clicked despite the rest of the function being gone.
