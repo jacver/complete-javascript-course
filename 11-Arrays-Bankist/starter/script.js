@@ -82,7 +82,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Arrays are objects with access to special tools below in addition to push, pop, indexOf, length, unshift, shift, and includes
 
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 // test array
 
 // SLICE method
@@ -102,29 +102,44 @@ let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // splice actually mutates the original array
 // console.log(arr.splice(2));
-console.log(arr);
+// console.log(arr);
 // now in the original array the extracted (spliced) elements are gone. They were deleted so now all that is left is ['a', 'b']. This isn't incredibly useful, but you will use it to remove the last element from an array
-arr.splice(-1);
-console.log(arr);
+// arr.splice(-1);
+// console.log(arr);
 
-arr.splice(1, 2);
-console.log(arr);
+// arr.splice(1, 2);
+// console.log(arr);
 // the second parameter is different in that it's just teh number of elements you want to delete. Above you're starting from position 1 and deleting 2 elements so you're only left with ['a', 'd']
 
 // REVERSE
-arr = ['a', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f'];
-console.log(arr2.reverse());
+// arr = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse());
 // reverse does mutate the original array.
-console.log(arr, arr2);
+// console.log(arr, arr2);
 
 // CONCAT
 
 // this is used to concatenate 2 arrays without mutating arrays
-const letters = arr.concat(arr2);
+// const letters = arr.concat(arr2);
 // the second array is the argument and the first one is the one it is called on. This is similar to [...arr, ...arr2]
-console.log(letters);
+// console.log(letters);
 
 // JOIN
-console.log(letters.join(' - '));
+// console.log(letters.join(' - '));
 // the result here is a string with the specified seperator.
+
+// lesson 143 -- the new at method
+// this is new in ES22
+// const arr = [23, 11, 64];
+// console.log(arr[0]);
+// console.log(arr.at(0));
+// // these both give you the same result while replacing the traditional bracket notation with the more modern .at version.
+
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+// // These are the traditional methods for getting the last item in the array. The .at method makes this easier using the following syntax:
+// console.log(arr.at(-1));
+
+// // this method also works on strings
+// console.log('jacob'.at(-1));
