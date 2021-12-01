@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -129,17 +129,46 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(letters.join(' - '));
 // the result here is a string with the specified seperator.
 
-// lesson 143 -- the new at method
-// this is new in ES22
-// const arr = [23, 11, 64];
-// console.log(arr[0]);
-// console.log(arr.at(0));
-// // these both give you the same result while replacing the traditional bracket notation with the more modern .at version.
+/*
+lesson 143 -- the new at method
+this is new in ES22
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+// these both give you the same result while replacing the traditional bracket notation with the more modern .at version.
 
-// console.log(arr[arr.length - 1]);
-// console.log(arr.slice(-1)[0]);
-// // These are the traditional methods for getting the last item in the array. The .at method makes this easier using the following syntax:
-// console.log(arr.at(-1));
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+// These are the traditional methods for getting the last item in the array. The .at method makes this easier using the following syntax:
+console.log(arr.at(-1));
 
-// // this method also works on strings
-// console.log('jacob'.at(-1));
+// this method also works on strings
+console.log('jacob'.at(-1));
+*/
+
+// video 144 - looping arrays: forEach
+/*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Transaction ${i + 1}: You deposited ${movement}`);
+  } else {
+    console.log(`Transaction ${i + 1}: You withdrew ${Math.abs(movement)}`);
+  }
+}
+// this for of loop returns the transactions with a string. Math.abs gets the absolute value (removes negative sign)
+
+console.log('---- FOR EACH ----');
+
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Transaction ${i + 1}: You deposited ${mov}`);
+  } else {
+    console.log(`Transaction ${i + 1}: You withdrew ${Math.abs(mov)}`);
+  }
+});
+// the .forEach method returns the same thing as the for of loop with an anonymous function. The forEach gets it's instructions from the callback function. It knows to run through the array because of what you attached it to. the forEach method is easier and cleaner
+// The .forEach also passes in the current element, the index, and the  entire array you are looping over so you can include those as optional arguments. The names do not matter but order does.
+// You can not break out of a forEach loop so continue and break will not work. If those are crucial you must use the older for of loop. 
+*/
