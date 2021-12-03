@@ -61,15 +61,36 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  // .textContent = 0
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>
+  `;
+
+    containerMovements.insertAdjacentHTML('afterBegin', html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -172,3 +193,33 @@ movements.forEach(function (mov, i, arr) {
 // The .forEach also passes in the current element, the index, and the  entire array you are looping over so you can include those as optional arguments. The names do not matter but order does.
 // You can not break out of a forEach loop so continue and break will not work. If those are crucial you must use the older for of loop. 
 */
+
+// video 145 - Looping Arrays: forEach with maps and sets
+/*
+// map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+// here the key is the same as the value because sets do not have keys or indexes. Key still has to be an argument though so that the forEach rules remain the same.
+*/
+
+// lecture 146 - PROJECT: Bankist App
+// project overview. Use flowchart and bankist.netlify.app to play with live version. Login with user js and pin 1111.
+
+// lecture 147: Creating DOM Elements
+// bankist DOM overview. code written in top section.
+
+// coding challenge 1 - dogs
