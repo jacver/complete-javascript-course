@@ -133,7 +133,7 @@ displayMovements(account1.movements);
 // the second parameter is different in that it's just teh number of elements you want to delete. Above you're starting from position 1 and deleting 2 elements so you're only left with ['a', 'd']
 
 // REVERSE
-// arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 // const arr2 = ['j', 'i', 'h', 'g', 'f'];
 // console.log(arr2.reverse());
 // reverse does mutate the original array.
@@ -195,6 +195,7 @@ movements.forEach(function (mov, i, arr) {
 */
 
 // video 145 - Looping Arrays: forEach with maps and sets
+
 /*
 // map
 const currencies = new Map([
@@ -223,3 +224,37 @@ currenciesUnique.forEach(function (value, key, map) {
 // bankist DOM overview. code written in top section.
 
 // coding challenge 1 - dogs
+
+/* Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
+
+Your tasks:
+Create a function 'checkDogs', which accepts 2 arrays of dog's ages ('dogsJulia' and 'dogsKate'), and does the following things:
+1. Julia found out that the owners of the first and the last two dogs actually have cats, not dogs! So create a shallow copy of Julia's array, and remove the cat ages from that copied array (because it's a bad practice to mutate function parameters)
+2. Create an array with both Julia's (corrected) and Kate's data
+3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 
+is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy")
+4. Run the function for both test datasets
+*/
+
+/* test data 1 */
+// let dogsJulia = [3, 5, 2, 12, 7];
+// let dogsKate = [4, 1, 15, 8, 3];
+
+/* test data 2 */
+let dogsJulia = [9, 16, 6, 8, 3];
+let dogsKate = [10, 5, 6, 1, 4];
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  let dogsJuliaCopy = dogsJulia.slice(1, -2);
+  /* removing cats from Julia's data */
+  let dogsAll = dogsJuliaCopy.concat(dogsKate);
+  /* concatenating the arrays*/
+  dogsAll.forEach(function (age, i) {
+    if (age >= 3) {
+      console.log(`Dog ${i + 1}: This dog is a ${age} year old adult`);
+    } else {
+      console.log(`Dog ${i + 1}: This dog is a ${age} year old puppy`);
+    }
+  });
+};
+checkDogs(dogsJulia, dogsKate);
