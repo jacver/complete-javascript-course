@@ -241,20 +241,31 @@ is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy")
 // let dogsKate = [4, 1, 15, 8, 3];
 
 /* test data 2 */
-let dogsJulia = [9, 16, 6, 8, 3];
-let dogsKate = [10, 5, 6, 1, 4];
+// let dogsJulia = [9, 16, 6, 8, 3];
+// let dogsKate = [10, 5, 6, 1, 4];
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  let dogsJuliaCopy = dogsJulia.slice(1, -2);
-  /* removing cats from Julia's data */
-  let dogsAll = dogsJuliaCopy.concat(dogsKate);
-  /* concatenating the arrays*/
-  dogsAll.forEach(function (age, i) {
-    if (age >= 3) {
-      console.log(`Dog ${i + 1}: This dog is a ${age} year old adult`);
-    } else {
-      console.log(`Dog ${i + 1}: This dog is a ${age} year old puppy`);
-    }
-  });
-};
-checkDogs(dogsJulia, dogsKate);
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   let dogsJuliaCopy = dogsJulia.slice(1, -2);
+//   /* removing cats from Julia's data */
+//   let dogsAll = dogsJuliaCopy.concat(dogsKate);
+//   /* concatenating the arrays*/
+//   dogsAll.forEach(function (age, i) {
+//     if (age >= 3) {
+//       console.log(`Dog ${i + 1}: This dog is a ${age} year old adult`);
+//     } else {
+//       console.log(`Dog ${i + 1}: This dog is a ${age} year old puppy`);
+//     }
+//   });
+// };
+// checkDogs(dogsJulia, dogsKate);
+
+// Video 149 - Data Transformations: map, filter, reduce
+
+// Map Method
+// The map method loops over arrays similar to forEach. Map creates a brand new array based on the original array. It takes original array, each iteration is functioned on then placed into the new array. Example: if you map with current * 2, each element will be multiplied by 2 and placed into a new array. Typically more useful than forEach as it builds a new array based on original and operation.
+
+// Filter Method
+// Filters for elements in original array that satisfy a condition. Example: filtering x > 2 will create a new array of only items greater than 2.
+
+// Reduce Method
+// boils (reduces) all array elements into a single value. Example: all elements added together. Accumulator value + current has each iteration adds upon the next. AKA snowball effect.
