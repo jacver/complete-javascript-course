@@ -269,3 +269,25 @@ is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy")
 
 // Reduce Method
 // boils (reduces) all array elements into a single value. Example: all elements added together. Accumulator value + current has each iteration adds upon the next. AKA snowball effect.
+
+/*
+// Video 150 - the Map Method
+// Brand new array will contain, in each position, the result of the callback function applied to the original function.
+
+// objective: convert these numbers (in euros) to USD
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const euroToUsd = 1.1;
+const movementsUSD = movements.map(mov => mov * euroToUsd);
+console.log(movements);
+console.log(movementsUSD);
+// the above code is written using an arrow function which is less code, but can be controversial as some people think removing the function word reduces readability. Remember: 1 line of code means you dont need to type return
+// using methods together with callback functions is more in line with modern "functional programming" which is preferred to older styles. You can achieve the same results with a for of loop, but it's longer.
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+// ternary operator to shorten if else
+console.log(movementsDescriptions);
+*/
