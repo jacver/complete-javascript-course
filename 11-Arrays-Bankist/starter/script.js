@@ -82,6 +82,13 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+// printing balance total on app
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -324,4 +331,24 @@ console.log(deposits);
 const withdrawals = movements.filter(mov => mov < 0);
 // arrow function cleaner and easier;
 console.log(withdrawals);
+*/
+
+/*
+// video 153 - the reduce method
+// Used to boil down elements in an array to a single value (example: adding all numbers)
+
+// accumulater is snowball
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i + 1}: ${acc}`);
+//   return cur + acc;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// arrow function versus full function above
+// the 0 serves to show where you want to start adding from. Here we want zero, but you can change it to see it impact the sum and iteration 1 in the console
+console.log(balance);
+
+// Maximum value of movements array (3000). Remember, you are boiling array into 1 value, does not HAVE to be sum. You can do anything
+const max = movements.reduce((acc, mov) => (acc > mov ? acc : mov));
+// use ternary operator to simplify the logic here
+console.log(max);
 */
