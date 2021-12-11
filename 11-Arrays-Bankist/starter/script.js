@@ -82,6 +82,14 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const user = 'Steven Thomas Williams'; // stw
+const username = user
+  .toLowerCase()
+  .split(' ')
+  .map(name => name[0])
+  .join('');
+console.log(username);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -291,3 +299,6 @@ const movementsDescriptions = movements.map(
 // ternary operator to shorten if else
 console.log(movementsDescriptions);
 */
+
+// video 151 - computing usernames
+// notes for this at top with other bankist code
