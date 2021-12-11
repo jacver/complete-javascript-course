@@ -103,7 +103,7 @@ console.log(accounts);
 //   ['GBP', 'Pound sterling'],
 // ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -305,3 +305,23 @@ console.log(movementsDescriptions);
 
 // video 151 - computing usernames
 // notes for this at top with other bankist code
+
+// video 152 - filter method
+// filter method looks for values that satisfy a certain condition determined by a callback function
+/*
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+// all you are doing is returning a boolean
+console.log(movements);
+console.log(deposits);
+
+// const depositsforOf = [];
+// for (const mov of movements) if (mov > 0) depositsforOf.push(mov);
+// console.log(depositsforOf);
+// this is the for of looping which is less modern and unchainable.
+
+const withdrawals = movements.filter(mov => mov < 0);
+// arrow function cleaner and easier;
+console.log(withdrawals);
+*/
