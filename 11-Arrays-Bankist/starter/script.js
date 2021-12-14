@@ -424,3 +424,18 @@ const totalDepositsUSD = Math.trunc(
 );
 console.log(totalDepositsUSD);
 // each callback function here has access to full array as an argument (arr). To debug you can log the array at each step
+
+// Coding Challenge 3
+// Rewrite Challenge 2 using arrow function
+
+//Test data:
+//Data 1: [5, 2, 4, 1, 15, 8, 3]
+//Data 2: [16, 6, 10, 5, 6, 1, 4]
+
+// const dogAge = [5, 2, 4, 1, 15, 8, 3];
+
+// const calcAverageHumanAgeArrow = dogAge
+//   .map(ages => (ages <= 2 ? 2 * ages : 16 + ages * 4))
+//   .filter(age => age >= 18)
+//   .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+// console.log(calcAverageHumanAgeArrow);
