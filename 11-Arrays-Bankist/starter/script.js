@@ -414,15 +414,15 @@ if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old
 
 // video 155 - the magic of chaining methods
 // Map, filter, and reduce can all be chained together. Example, take all movements, convert the currency, then add it all so you know total deposited in USD.
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-const eurToUsd = 1.1;
-const totalDepositsUSD = Math.trunc(
-  movements
-    .filter(mov => mov > 0)
-    .map(mov => mov * eurToUsd)
-    .reduce((acc, mov) => acc + mov, 0)
-);
-console.log(totalDepositsUSD);
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const eurToUsd = 1.1;
+// const totalDepositsUSD = Math.trunc(
+//   movements
+//     .filter(mov => mov > 0)
+//     .map(mov => mov * eurToUsd)
+//     .reduce((acc, mov) => acc + mov, 0)
+// );
+// console.log(totalDepositsUSD);//
 // each callback function here has access to full array as an argument (arr). To debug you can log the array at each step
 
 // Coding Challenge 3
@@ -439,3 +439,19 @@ console.log(totalDepositsUSD);
 //   .filter(age => age >= 18)
 //   .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
 // console.log(calcAverageHumanAgeArrow);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+/*
+// Video 157 - the Find method
+// the find method also accepts a callback function which is called as the method loops over the array. The method then retrieves an element of the array.
+const firstWithdrawal = movements.find(mov => mov < 0);
+// returns a boolean so you need a condition that will work with a true or false. A new array is NOT returned, only the first element that satisfies the condition. In this example, it will return the first withdrawal (movement below 0)
+console.log(firstWithdrawal);
+// Different from filter because here only 1 element is returned, not a new array. Find DOES NOT RETURN AN ARRAY
+console.log(accounts);
+// On this larger object that has all of our bankist accounts, now we can find something very specific
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+// Here we pulled out the object that only belongs to Jessica. Very good use case for find() here. Now we can see all of Jessica's account information using a property we already know (name). Find is typically used when we only want one element or one instance where the condition can be true so we use the === operator.
+*/
