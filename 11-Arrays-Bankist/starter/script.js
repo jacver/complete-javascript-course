@@ -183,6 +183,28 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  // preventing default
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    console.log(accounts);
+
+    // hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+  // this has to go after if else statement or itll reset without reading the rest of the code
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -516,3 +538,7 @@ const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 // Here we pulled out the object that only belongs to Jessica. Very good use case for find() here. Now we can see all of Jessica's account information using a property we already know (name). Find is typically used when we only want one element or one instance where the condition can be true so we use the === operator.
 */
+
+// Video 160 - findIndex method
+// findIndex() works very similar as find(), but instead returns the index of the element rather than the actual element. An example use case in the bankist app - the Close Account function. In this case we want to remove the account from the accounts array so we would use splice(). However, to splice we need the index. Enter findIndex().
+// both find() and findIndex() were added in ES6, so it may not work in very old browsers
