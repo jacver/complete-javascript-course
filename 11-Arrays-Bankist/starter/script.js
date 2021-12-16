@@ -183,6 +183,20 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add movement
+    currentAccount.movements.push(amount);
+    // update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   // preventing default
@@ -542,3 +556,26 @@ console.log(account);
 // Video 160 - findIndex method
 // findIndex() works very similar as find(), but instead returns the index of the element rather than the actual element. An example use case in the bankist app - the Close Account function. In this case we want to remove the account from the accounts array so we would use splice(). However, to splice we need the index. Enter findIndex().
 // both find() and findIndex() were added in ES6, so it may not work in very old browsers
+
+// video 161 - Some and Every
+//  SOME method
+//Includes method can only test for equality. The condition has to be the exact same. The Some method can test for a condition. Example: testing if there have been any deposits in an account (any movement above 0)
+console.log(movements);
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+console.log(movements.some(mov => mov === -130));
+// The above still works the same as includes. Think of it as ANY rather than SOME
+
+// EVERY method
+// Every only returns true if ALL array elements satisfy the passed condition. If one element does not meet the condition then every will return false.
+console.log(movements.every(mov => mov > 0));
+// we have some movements below 0 (withdraws)
+console.log(account4.movements.every(mov => mov > 0));
+// account 4 only has deposits so here we get true returned
+
+// separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+// this can make changes to functions far easier. Keeps code dry.
