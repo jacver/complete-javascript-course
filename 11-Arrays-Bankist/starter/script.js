@@ -61,11 +61,14 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
   // .textContent = 0
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  // you must create a copy using the slice method so you dont change the underlying data
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -217,6 +220,16 @@ btnClose.addEventListener('click', function (e) {
 
   inputCloseUsername.value = inputClosePin.value = '';
   // this has to go after if else statement or itll reset without reading the rest of the code
+});
+
+let sorted = false;
+// the array starts as unsorted so we start false
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  // the not operator here will do whatever the opposite of sorted is so it will flip
+  sorted = !sorted;
+  // again, each time we click we change sorted from true to false etc
 });
 
 /////////////////////////////////////////////////
@@ -580,6 +593,7 @@ const anyDeposits = movements.some(mov => mov > 0);
 // console.log(movements.filter(deposit));
 // this can make changes to functions far easier. Keeps code dry.
 
+/*
 // video 162 flat and flatMap
 
 // flat will merge arrays nested in each other into one array
@@ -607,3 +621,38 @@ console.log(overallBalanceChained);
 const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
+*/
+
+// video 163 - sorting arrays
+
+const owners = ['Jacob', 'April', 'Hugo', 'Will'];
+console.log(owners.sort());
+// sorts strings alphabetically and mutates the original array so you need to be careful
+// console.log(owners);
+
+console.log(movements);
+// console.log(movements.sort());
+// Since the sort method converts everything to strings, the result isn't what you expect when you use it on numbers. This needs to be fixed using a callback method.
+
+// return < 0, A goes before B (keep order)
+// return > 0, B goes before A (switch order)
+// console.log(
+//   movements.sort((a, b) => {
+//     if (a > b) return 1;
+//     if (a < b) return -1;
+//   })
+// );
+// this callback will put things into ascending order. A and B represent the two numbers on each iteration.
+console.log(movements.sort((a, b) => a - b));
+// much cleaner way to write it
+
+// to do a descending order you just flip the callback
+// console.log(
+//   movements.sort((a, b) => {
+//     if (a < b) return 1;
+//     if (a > b) return -1;
+//   })
+// );
+console.log(movements.sort((a, b) => b - a));
+
+// if your array is mixed with strings AND numbers, the sort method will not work
