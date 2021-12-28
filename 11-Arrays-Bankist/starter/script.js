@@ -560,22 +560,50 @@ console.log(account);
 // video 161 - Some and Every
 //  SOME method
 //Includes method can only test for equality. The condition has to be the exact same. The Some method can test for a condition. Example: testing if there have been any deposits in an account (any movement above 0)
-console.log(movements);
+// console.log(movements);
 const anyDeposits = movements.some(mov => mov > 0);
-console.log(anyDeposits);
-console.log(movements.some(mov => mov === -130));
+// console.log(anyDeposits);
+// console.log(movements.some(mov => mov === -130));
 // The above still works the same as includes. Think of it as ANY rather than SOME
 
 // EVERY method
 // Every only returns true if ALL array elements satisfy the passed condition. If one element does not meet the condition then every will return false.
-console.log(movements.every(mov => mov > 0));
+// console.log(movements.every(mov => mov > 0));
 // we have some movements below 0 (withdraws)
-console.log(account4.movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
 // account 4 only has deposits so here we get true returned
 
 // separate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
 // this can make changes to functions far easier. Keeps code dry.
+
+// video 162 flat and flatMap
+
+// flat will merge arrays nested in each other into one array
+// this array only has one level of depth. Arrays inside of arrays. Flat will work very simply.
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+// the array below has more depth, arrays in arrays, in an array. The flat method only goes one level deep when flattening. This must be fixed using a new def argument. The default depth is 1 so .flat() and .flat(1) are the same. By using .flat(2) you can go two deep.
+const arr2 = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arr2.flat(2));
+
+const accountMovements = accounts.map(acc => acc.movements);
+// since Map returns a new array, using map to take the movements from the larger account array will return a nested array (all of the movements from each account as one array in a larger array).
+const allMovements = accountMovements.flat();
+// this has only 1 level of nesting so now need to change the default argument. Here we get an array with all of the movements and no nesting
+const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+
+// below is the above chained
+const overallBalanceChained = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalanceChained);
+
+//  Mappening and then flattening is pretty common. Because of this, flatMap was introduced which combines the step. flatMap can only go one level deep so if you need to change that default you'll need to break it into two steps.
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
