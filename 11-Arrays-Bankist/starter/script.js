@@ -690,3 +690,37 @@ labelBalance.addEventListener('click', function () {
   console.log(movementsUI);
 });
 */
+
+/*
+// video 165 - which array method to use?
+
+// review the infographic on this video
+
+// There are 23 array methods and choosing which to use can be difficult. When deciding ask the following questions:
+// 1) do I want to mutate the array? Or do i want a new array?
+// 2) do I want an array index or an array element?
+// 3) Do i want a new string or to know if it includes?
+// 4) do i want to transform to value or just loop the array?
+
+// If you need to mutate the array:
+// add using push (end) or unshift (start)
+// remove using pop (end), shift (start), or splice (any)
+// reverse, sort, and fill also mutate the array
+
+// If you need a new array:
+// computed from original use map (loop)
+// filter for a condition, slice for a portion of the original, adding original to another using concat, or flatten the original to remove nesting using flat or flatMap
+
+// If you need an array index:
+// based on value indexOf, based on condition findIndex
+// if you need array element:
+// use find method with a condition
+
+// If you need to know if an array includes use includes or use a condition with some and every
+
+// use join to create a new string
+
+// use reduce to boil it down to a single value of any type. Needs accumulator
+
+// To simply loop the array: forEach (no new array just loops over)
+*/
