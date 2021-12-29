@@ -623,6 +623,7 @@ const overallBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 */
 
+/*
 // video 163 - sorting arrays
 
 const owners = ['Jacob', 'April', 'Hugo', 'Will'];
@@ -656,3 +657,36 @@ console.log(movements.sort((a, b) => a - b));
 console.log(movements.sort((a, b) => b - a));
 
 // if your array is mixed with strings AND numbers, the sort method will not work
+*/
+
+/*
+
+// video 164 - more ways of creating and filling arrays
+
+// arrays can be generated programatically for when you dont have all your preset data.
+
+const x = new Array(7);
+console.log(x);
+// this creates an array with 7 empty elements. So when you pass in 1 argument it just creates an array with that many elements.
+x.fill(1, 3, 5);
+// first value is what you fill it with, second is where you start (same as slice). Can use an ending value too.
+console.log(x);
+
+// array.from(). Array itself is a function here (blue) that we are calling the from() method on. Similar to above when we did new Array.
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+// define array length. Then you're creating the callback function with which the array will be filled. Here we're just filling it with 1s so theres no argument or other logic. Array.From is better than new Array.
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+// adding 1 to index is same as map function creating 1 thru 7. The _ represents the first parameter, but since we don't need it the underscore denotes it's unused
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent)
+  );
+
+  console.log(movementsUI);
+});
+*/
