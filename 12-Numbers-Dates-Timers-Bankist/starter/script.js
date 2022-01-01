@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -206,7 +206,8 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
+  // use floor here to round value down
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -252,6 +253,7 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+/*
 // video 170 - converting and checking numbers
 
 // in JS numbers are always interpreted as floating point numbers (as decimals) regardless of how you write them.
@@ -291,3 +293,40 @@ console.log(Number.isFinite(+'20X'));
 console.log(Number.isFinite(23 / 0));
 
 // if you are working with floating numbers (decimals use isFinite). If you are only using integers (whole numbers) you can just use isInteger.
+*/
+
+/*
+// video 171 - numbers, dates, intl, and timers
+
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(8 ** (1 / 3));
+
+console.log(Math.max(5, 18, '23', 11, 2));
+// returns highest number with type coersion, but no parsing
+console.log(Math.min(5, 18, '23', 11, 2));
+
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+// calculation ofa radius using pi and parsefloat on css value
+
+console.log(Math.trunc(Math.random() * 6 + 1));
+// need to + 1 to offset truncation otherwise your values would be 0 - 5
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+// 0 to 1 -> 0 to (max-min) -> min to max
+console.log(randomInt(10, 20));
+
+// rounding integers
+console.log(Math.round(23.6));
+console.log(Math.ceil(23.9));
+console.log(Math.floor(23.9));
+console.log(Math.floor(-23.4));
+
+console.log(Math.trunc(23.9));
+// trunc only removes the decimal value it does NOT round. Especially when working with negative numbers, you must use an actual rounding method.
+
+// rounding decimals
+console.log(+(2.737).toFixed(2));
+// toFixed returns as a string, not a zero. The argument is how many decimal parts you want. Therefore, you must add the operator to change type.
+*/
