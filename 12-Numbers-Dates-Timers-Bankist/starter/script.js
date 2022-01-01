@@ -164,7 +164,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -182,7 +182,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -206,7 +206,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -223,7 +223,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -251,3 +251,43 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// video 170 - converting and checking numbers
+
+// in JS numbers are always interpreted as floating point numbers (as decimals) regardless of how you write them.
+// console.log(23 === 23.0);
+
+// base 10 system = numbers 0-9. 1/10 = 0.1. 3/10 = 3.33333
+// binary (base 2) = 0 and 1
+// console.log(0.1 + 0.2);
+// infinite fractions sometimes come back weird like above. This means that javascript is unable to do extremely precise calculations.
+
+// Converting numbers
+
+console.log(Number('23'));
+console.log(+'23');
+// the operator in front of the string does type coercion to make it a number
+
+// Parsing
+console.log(Number.parseInt('30px', 10), Number.parseInt('e23', 10));
+// JS will parse the number out of the string. To make this work the string must start with the number. The second argument is the radix (base of the number system you are using so either 10 or 2)
+
+console.log(Number.parseFloat('2.5rem'));
+// must use float if you want decimals. Otherwise it will just give you the Integer (int). This is especially useful when reading numbers from CSS.
+
+// These are global functions so you dont NEED to call them on Number object. However, that is old and you should call it on Number. Older example would simply be parseFloat('2.5rem')
+
+// isNan determines if your value is NaN
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20'));
+console.log(Number.isNaN(23 / 0));
+
+// isFinite is the best way to determine if a value is a number.
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20X'));
+// this one is false because the X is not parsed out so it stays a string
+console.log(Number.isFinite(23 / 0));
+
+// if you are working with floating numbers (decimals use isFinite). If you are only using integers (whole numbers) you can just use isInteger.
