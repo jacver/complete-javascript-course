@@ -330,3 +330,23 @@ console.log(Math.trunc(23.9));
 console.log(+(2.737).toFixed(2));
 // toFixed returns as a string, not a zero. The argument is how many decimal parts you want. Therefore, you must add the operator to change type.
 */
+
+/*
+// video 172 - the Remainder operator
+console.log(5 % 2); //  = 1
+console.log(5 / 2); // 5 = 2 * 2 + 1 so 1 is the remainder
+
+console.log(8 % 3); // = 2
+console.log(8 / 3); // 8 = 2 * 3 + 2 (remainder = 2)
+
+// The remainder operator will return the remainder. The amount left over after division. This can check if a number is divisible by another number.
+
+// A number is even when it's divisible by 2. The remainder of these numbers when dividing by 2 is always 0. This is a good way to check if a number is even
+console.log(6 % 2);
+console.log(12 % 2);
+
+const isEven = n => n % 2 === 0; // will return true or false
+console.log(isEven(6));
+
+// If you need to do something every nth time, you can loop over using the remainder operator. Example, to change the color on every other row in movements you can do if (i % 2 === 0) {.style}
+*/
