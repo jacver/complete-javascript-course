@@ -365,3 +365,33 @@ const PI = 3.14_15; // underscore can only go between two numbers, not between t
 
 console.log(+'23_000'); // cannot use type coercion w/ underscore. When using numbers as a string or recovering from an API JS won't be able to parse number.
 */
+
+/*
+// video 174 - working with bigint
+
+// Javascript can only reliably reproduce up to a certain amount (below). Above this number, the numbers lose precision.
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+console.log(912830912830918230981209n); // n on the end
+// the n transforms a regular number into a bigint number. For very massive numbers, this allows JS to display the number accurately.
+console.log(BigInt(9124091824091824091820948)); // can also use BigInt()
+
+// operations with bigInt
+console.log(10000n + 10000n); // works the exact same - numbers this small dont even need bigint
+console.log(33332323420520592083n * 888888882408n);
+
+const huge = 23022093024824829482948n;
+const num = 23;
+// cant mix bigint and regular numbers, must convert
+console.log(huge * BigInt(num));
+
+// exceptions
+console.log(20n > 15); // true
+console.log(20n === 20); // false (no type conversion with === and they arent the same type of primitive value. different 'typeof')
+console.log(20n == 20); // true (loose operator does type coercion)
+
+// division
+console.log(10n / 3n); // returns 3 - closest bigint no decimal
+console.log(10 / 3); // 3.33333
+*/
