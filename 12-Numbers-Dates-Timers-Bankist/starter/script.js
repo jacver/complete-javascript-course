@@ -350,3 +350,18 @@ console.log(isEven(6));
 
 // If you need to do something every nth time, you can loop over using the remainder operator. Example, to change the color on every other row in movements you can do if (i % 2 === 0) {.style}
 */
+
+/*
+// video 173 - numeric separators
+
+// 287,460,000,000 the commas are numeric seperators that make it easier to read large numbers. In JS we can use underscore _ to do the same. Ex:
+const diameter = 287_460_000_000; // when logged 287460000000
+const priceCents = 349_99;
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.14_15; // underscore can only go between two numbers, not between the decimal, beginning, or end of number.
+
+console.log(+'23_000'); // cannot use type coercion w/ underscore. When using numbers as a string or recovering from an API JS won't be able to parse number.
+*/
