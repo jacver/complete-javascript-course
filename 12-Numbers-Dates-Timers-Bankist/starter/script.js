@@ -395,3 +395,43 @@ console.log(20n == 20); // true (loose operator does type coercion)
 console.log(10n / 3n); // returns 3 - closest bigint no decimal
 console.log(10 / 3); // 3.33333
 */
+
+/*
+//  video 175 creating dates
+
+// create a date (4 ways)
+const now = new Date();
+console.log(now);
+
+console.log(new Date('Jan 03 2022 11:55:22'));
+console.log(new Date('december 24, 2015')); // parse from str
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // year, month, day, hour, minute second - MONTH IS 0 BASED
+
+console.log(new Date(2037, 10, 33)); // auto corrects if you put a day beyond how many are in the month
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // days to milliseconds
+
+// dates are another type of objects and therefore have their own methods much like arrays etc.
+
+
+// working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // never use getYear. ALWAYS getFullYear
+console.log(future.getMonth()); // zero based
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getMinutes());
+console.log(future.getHours());
+console.log(future.toISOString()); // international standard string
+console.log(future.getTime()); // timestamp is milliseconds that have passed since 1970
+console.log(new Date(2142282180000)); // returns same date as above using the timestamp (milliseconds) as above
+
+console.log(Date.now()); // returns timestamp NOW
+
+future.setFullYear(2040);
+console.log(future); // year changed to 2040 
+*/
