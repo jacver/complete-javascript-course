@@ -512,3 +512,5 @@ console.log(`${days1} days`);
 // allows formating of strings and numbers based on various languages and regions.
 
 // Intl.DateTimeFormat()
+
+// video 179 -- internationalizing numbers
